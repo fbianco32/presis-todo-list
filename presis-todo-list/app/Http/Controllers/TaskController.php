@@ -31,8 +31,8 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         try {
-            $title = Task::validateTitle($request->input('title'));
-            $status = Task::validateStatus($request->input('status'));
+            $title = Task::validateTitle($request->title);
+            $status = Task::validateStatus($request->status);
 
             $task = Task::create([
                 'title' => $title,
@@ -65,8 +65,8 @@ class TaskController extends Controller
     public function edit(Request $request)
     {
         try {        
-            $title = Task::validateTitle($request->input('title'));
-            $status = Task::validateStatus($request->input('status'));
+            $title = Task::validateTitle($request->title);
+            $status = Task::validateStatus($request->status);
     
             $task = Task::find($request->input('id'));
             

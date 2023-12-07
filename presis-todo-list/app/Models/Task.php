@@ -16,16 +16,16 @@ class Task extends Model
 
     public static function validateStatus(string $status){
         $validStatuses = ['pending', 'processing', 'completed'];
-        if(!(collect($validStatuses)->contains($status))) {
+        if(!$status || !(collect($validStatuses)->contains($status))) {
             throw new BadRequestException('The status is invalid');
         }
         return $status;
     }
     
 
-    public static function validateTitle(string $title){
+    public static function validateTitle($title){
         $titleRegex = '/^[\w-]*$/';
-        if(!(preg_match($titleRegex, $title))) {
+        if(!$title || !(preg_match($titleRegex, $title))) {
             throw new BadRequestException('The title is invalid');
         }
         return $title;
